@@ -67,12 +67,13 @@ class DigitNN:
         return loss_epochs
 
     def evaluate(self, X_test, y_test):
-        """Calculate and print test accuracy.
+        """Calculate, print and return test accuracy.
 
         """
         pred = self.net.forward(X_test)
         accuracy = np.mean(y_test == np.argmax(pred, axis=1))
         logging.info(f'Test accuracy: {accuracy}')
+        return accuracy
 
 
 if __name__ == '__main__':
