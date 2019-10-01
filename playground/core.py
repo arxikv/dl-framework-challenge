@@ -1,7 +1,10 @@
-from playground.layers import ParamsLayer
-
-
 class Sequential:
+    """Linear stack of layers.
+
+    Attributes:
+        layers (list)
+
+    """
 
     def __init__(self):
 
@@ -26,9 +29,10 @@ class Sequential:
         return current
 
     def params(self):
+        """Get trainable parameters of all layers.
 
+        """
         params_ = []
         for layer in self.layers:
-            if isinstance(layer, ParamsLayer):
-                params_.extend(layer.params())
+            params_.extend(layer.params())
         return params_
