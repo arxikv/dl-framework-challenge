@@ -86,13 +86,48 @@ class Conv2D(Layer):
     """Simple convolutional layer.
 
     Args:
-        input_shape (tuple): height, width and input channels, e.g. (128, 128, 3)
-        output_channels (int)
-        kernel_size (tuple): kernel height and width, e.g. (5, 5)
+        input_shape (tuple): height H, width W and input channels C_in, e.g. (128, 128, 3)
+        output_channels (int): C_out
+        kernel_size (tuple): kernel height kH and width kW, e.g. (5, 5)
+
+    Attributes:
+        weights (np.ndarray): weight tensor, shape (kH, kW, C_in, C_out)
 
     """
 
     def __init__(self, input_shape, output_channels, kernel_size):
+
+        raise NotImplementedError('Implement me!')
+
+    def forward(self, inputs):
+        """
+        Args:
+            inputs (np.ndarray): mini-batch features, shape (batch_size, H, W, C_in)
+
+        Returns:
+            np.ndarray, mini-batch outputs, shape (batch_size, H-kH+1, W-kW+1, C_out)
+
+        """
+        raise NotImplementedError('Implement me!')
+
+    def backward(self, grad_wrt_outputs):
+
+        raise NotImplementedError('Implement me!')
+
+    def params(self):
+
+        raise NotImplementedError('Implement me!')
+
+
+class MaxPooling2D(Layer):
+    """Max pooling layer.
+
+    Args:
+        input_shape (tuple): height, width and number of channels, e.g. (124, 124, 10)
+        pool_size (tuple): pool height and width, e.g. (2, 2)
+
+    """
+    def __init__(self, input_shape, pool_size):
 
         raise NotImplementedError('Implement me!')
 
@@ -105,5 +140,7 @@ class Conv2D(Layer):
         raise NotImplementedError('Implement me!')
 
     def params(self):
+        """Max pooling has no trainable parameters.
 
-        raise NotImplementedError('Implement me!')
+        """
+        return []
